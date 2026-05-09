@@ -3,6 +3,8 @@ import type {
   User,
   RouteSearchResponse,
   TravelerType,
+  ZedTier,
+  MatrixRuleRow,
   SearchHistoryItem,
   AgreementMatrixResponse,
   AgreementVerificationResponse,
@@ -137,6 +139,30 @@ export const api = {
       `/agreements/documents/${document_id}/approve`,
       { method: "POST" }
     ),
+
+  cancelDocument: (document_id: string) =>
+    request<void>(`/agreements/documents/${document_id}`, { method: "DELETE" }),
+
+  createRule: (
+    carrier_iata: string,
+    traveler_type: TravelerType,
+    is_unaccompanied_allowed: boolean,
+    zed_tier: ZedTier,
+    confidence_score = 3
+  ) =>
+    request<MatrixRuleRow>("/agreements/rules", {
+      method: "POST",
+      body: JSON.stringify({ carrier_iata, traveler_type, is_unaccompanied_allowed, zed_tier, confidence_score }),
+    }),
+
+  updateRule: (
+    rule_id: string,
+    patch: { is_unaccompanied_allowed?: boolean; zed_tier?: ZedTier; confidence_score?: number }
+  ) =>
+    request<MatrixRuleRow>(`/agreements/rules/${rule_id}`, {
+      method: "PATCH",
+      body: JSON.stringify(patch),
+    }),
 
   // Tenant requests
   getMyTenantRequest: () =>
