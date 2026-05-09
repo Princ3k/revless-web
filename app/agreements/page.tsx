@@ -176,11 +176,11 @@ export default function AgreementsPage() {
   }, {});
 
   return (
-    <div className="px-4 py-6 flex flex-col gap-6 max-w-2xl mx-auto">
+    <div className="px-6 py-8 flex flex-col gap-6 max-w-5xl mx-auto">
       {/* Header */}
       <div className="flex items-center justify-between">
         <div>
-          <h1 className="text-2xl font-bold text-[var(--text)]">Agreements</h1>
+          <h1 className="text-3xl font-bold text-[var(--text)]">Agreements</h1>
           <p className="text-sm text-[var(--muted)] mt-1">Your employer&apos;s interline rule matrix</p>
         </div>
         <button
