@@ -11,7 +11,8 @@ import type {
   VerificationHistoryItem,
 } from "./types";
 
-export const BASE_URL = "https://revless-api.onrender.com/api/v1";
+export const BASE_URL =
+  process.env.NEXT_PUBLIC_API_URL ?? "https://revless-api.onrender.com/api/v1";
 
 const TOKEN_KEY = "revless_token";
 
